@@ -1,0 +1,905 @@
+{
+  "swagger": "2.0",
+  "host": "c6401.ambari.apache.org:8080",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "info": {
+    "description": "This page lists all the file API's available as a part of the file browser view. Click the 'try it out button' to generate a curl query you can fire to test the call",
+    "title": "Ambari File view API calls"
+  },
+  "basePath": "/api/v1/views/FILES/versions",
+  "paths": {
+    "/{version}/instances/{instanceName}/resources/files/fileops/listdir": {
+      "get": {
+        "description": "List files in an HDFS Directory",
+        "summary": "List files at a specified path",
+        "operationId": "listDir",
+        "tags": [
+          "listDir"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "description": "",
+              "type": "object",
+              "properties": {
+                "files": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "minItems": 1,
+                  "items": {
+                    "required": [
+                      "path",
+                      "replication",
+                      "isDirectory",
+                      "len",
+                      "owner",
+                      "group",
+                      "permission",
+                      "accessTime",
+                      "modificationTime",
+                      "blockSize",
+                      "readAccess",
+                      "writeAccess",
+                      "executeAccess"
+                    ],
+                    "properties": {
+                      "path": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "replication": {
+                        "type": "number"
+                      },
+                      "isDirectory": {
+                        "type": "boolean"
+                      },
+                      "len": {
+                        "type": "number"
+                      },
+                      "owner": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "group": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "permission": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "accessTime": {
+                        "type": "number"
+                      },
+                      "modificationTime": {
+                        "type": "number"
+                      },
+                      "blockSize": {
+                        "type": "number"
+                      },
+                      "readAccess": {
+                        "type": "boolean"
+                      },
+                      "writeAccess": {
+                        "type": "boolean"
+                      },
+                      "executeAccess": {
+                        "type": "boolean"
+                      }
+                    }
+                  }
+                },
+                "meta": {
+                  "type": "object",
+                  "properties": {
+                    "path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "replication": {
+                      "type": "number"
+                    },
+                    "isDirectory": {
+                      "type": "boolean"
+                    },
+                    "len": {
+                      "type": "number"
+                    },
+                    "owner": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "group": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "permission": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "accessTime": {
+                      "type": "number"
+                    },
+                    "modificationTime": {
+                      "type": "number"
+                    },
+                    "blockSize": {
+                      "type": "number"
+                    },
+                    "readAccess": {
+                      "type": "boolean"
+                    },
+                    "writeAccess": {
+                      "type": "boolean"
+                    },
+                    "executeAccess": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "replication",
+                    "isDirectory",
+                    "len",
+                    "owner",
+                    "group",
+                    "permission",
+                    "accessTime",
+                    "modificationTime",
+                    "blockSize",
+                    "readAccess",
+                    "writeAccess",
+                    "executeAccess"
+                  ]
+                }
+              },
+              "required": [
+                "files",
+                "meta"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "path",
+            "description": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/files/fileops/moveToTrash": {
+      "delete": {
+        "description": "Move the item to trash",
+        "summary": "Delete an item ",
+        "operationId": "delete",
+        "tags": [
+          "delete"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "success"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paths": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "recursive": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "recursive"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "paths"
+              ]
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/files/fileops/mkdir": {
+      "put": {
+        "description": "Create dir",
+        "summary": "Create a directory",
+        "operationId": "mkdir",
+        "tags": [
+          "mkDir"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "replication": {
+                  "type": "integer"
+                },
+                "isDirectory": {
+                  "type": "boolean"
+                },
+                "len": {
+                  "type": "integer"
+                },
+                "owner": {
+                  "type": "string"
+                },
+                "group": {
+                  "type": "string"
+                },
+                "permission": {
+                  "type": "string"
+                },
+                "accessTime": {
+                  "type": "integer"
+                },
+                "modificationTime": {
+                  "type": "integer"
+                },
+                "blockSize": {
+                  "type": "integer"
+                },
+                "readAccess": {
+                  "type": "boolean"
+                },
+                "writeAccess": {
+                  "type": "boolean"
+                },
+                "executeAccess": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "path",
+                "replication",
+                "isDirectory",
+                "len",
+                "owner",
+                "group",
+                "permission",
+                "accessTime",
+                "modificationTime",
+                "blockSize",
+                "readAccess",
+                "writeAccess",
+                "executeAccess"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path"
+              ]
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/files/fileops/remove": {
+      "delete": {
+        "description": "Permanently delete and item",
+        "summary": "Permanently Delete an item ",
+        "operationId": "remove",
+        "tags": [
+          "remove"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "success"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "paths": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "path": {
+                        "type": "string"
+                      },
+                      "recursive": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "path",
+                      "recursive"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "paths"
+              ]
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/files/fileops/move": {
+      "post": {
+        "description": "Move items into directories",
+        "summary": "This call moves the source items into the target directory",
+        "operationId": "move",
+        "tags": [
+          "move"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "success"
+              ]
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "succeeded": {
+                  "type": "array",
+                  "items": {}
+                },
+                "failed": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "unprocessed": {
+                  "type": "array",
+                  "items": {}
+                }
+              },
+              "required": [
+                "success",
+                "message",
+                "succeeded",
+                "failed",
+                "unprocessed"
+              ]
+            }
+          }
+
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sourcePaths": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "destinationPath": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sourcePaths",
+                "destinationPath"
+              ]
+            }          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/files/fileops/copy": {
+      "post": {
+        "description": "Copy items into target directories",
+        "summary": "This call copies the source items into the target directory",
+        "operationId": "copy",
+        "tags": [
+          "copy"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "success"
+              ]
+            }
+          },
+          "422": {
+            "description": "Unprocessable entity",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "succeeded": {
+                  "type": "array",
+                  "items": {}
+                },
+                "failed": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "unprocessed": {
+                  "type": "array",
+                  "items": {}
+                }
+              },
+              "required": [
+                "success",
+                "message",
+                "succeeded",
+                "failed",
+                "unprocessed"
+              ]
+            }
+          }
+
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "request",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "sourcePaths": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "destinationPath": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "sourcePaths",
+                "destinationPath"
+              ]
+            }          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/files/fileops/upload": {
+      "post": {
+        "description": "Upload a file into the specified directory, The curl definition for this is incomplete please add  -F path=TARGET_DIR -F filedata=@FULL_FILE_PATH_TO_UPLOAD",
+        "summary": "This call uploads a single file into the specified directory",
+        "operationId": "upload",
+        "tags": [
+          "upload"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string"
+                },
+                "replication": {
+                  "type": "integer"
+                },
+                "isDirectory": {
+                  "type": "boolean"
+                },
+                "len": {
+                  "type": "integer"
+                },
+                "owner": {
+                  "type": "string"
+                },
+                "group": {
+                  "type": "string"
+                },
+                "permission": {
+                  "type": "string"
+                },
+                "accessTime": {
+                  "type": "integer"
+                },
+                "modificationTime": {
+                  "type": "integer"
+                },
+                "blockSize": {
+                  "type": "integer"
+                },
+                "readAccess": {
+                  "type": "boolean"
+                },
+                "writeAccess": {
+                  "type": "boolean"
+                },
+                "executeAccess": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "path",
+                "replication",
+                "isDirectory",
+                "len",
+                "owner",
+                "group",
+                "permission",
+                "accessTime",
+                "modificationTime",
+                "blockSize",
+                "readAccess",
+                "writeAccess",
+                "executeAccess"
+              ]
+            }
+          }
+
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "path",
+            "in": "formData",
+            "description": "The path to upload the file to",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "description": "The file to upload",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    }
+
+
+
+  }
+}
