@@ -1,0 +1,204 @@
+{
+  "swagger": "2.0",
+  "host": "c6401.ambari.apache.org:8080",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "info": {
+    "description": "This page lists the API calls for the AMBARI Hive view",
+    "title": "Ambari Hive view API calls"
+  },
+  "basePath": "/api/v1/views/HIVE/versions",
+  "paths": {
+    "/{version}/instances/{instanceName}/resources/ddl/database": {
+      "get": {
+        "description": "List all databases",
+        "summary": "Gets a list of all databases, This call is made repeatedly from the FE to keep the database list up to date",
+        "operationId": "getDatabases",
+        "tags": [
+          "databases"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "databases": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "databases"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/ddl/database/{dbName}/table": {
+      "get": {
+        "description": "List all tables in the specified database",
+        "summary": "Gets a list of all tables in the database specified in the path parameter {dbName}",
+        "operationId": "getTablesInDatabase",
+        "tags": [
+          "tables"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tables": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "database": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "tables",
+                "database"
+              ]
+            }          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "version",
+            "description": "view version",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "instanceName",
+            "description": "Name of the instance",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "dbName",
+            "description": "Name of the database",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "header",
+            "name": "X-Requested-By",
+            "description": "Required Header",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "ambari"
+            ]
+          },
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Basic Auth header",
+            "required": true,
+            "type": "string"
+          }
+        ]
+      }
+    }
+
+
+
+  }
+}
