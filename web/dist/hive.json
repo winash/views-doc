@@ -1,6 +1,6 @@
 {
   "swagger": "2.0",
-  "host": "c6401.ambari.apache.org:8080",
+  "host": "c6405.ambari.apache.org:8080",
   "schemes": [
     "http",
     "https"

@@ -1,0 +1,1360 @@
+{
+  "swagger": "2.0",
+  "host": "c6401.ambari.apache.org:8080",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "info": {
+    "description": "This page lists the API calls for the AMBARI PIG view",
+    "title": "Ambari PIG view API calls"
+  },
+  "basePath": "/api/v1/views/PIG/versions",
+  "paths": {
+    "/{version}/instances/{instanceName}/scripts": {
+      "get": {
+        "description": "List all  Scripts",
+        "summary": "List all scripts.",
+        "operationId": "scripts",
+        "tags": [
+          "scripts"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "scripts": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "pigScript": {
+                        "type": "string"
+                      },
+                      "pythonScript": {
+                        "type": "string"
+                      },
+                      "templetonArguments": {
+                        "type": "string"
+                      },
+                      "dateCreated": {
+                        "type": "integer"
+                      },
+                      "owner": {
+                        "type": "string"
+                      },
+                      "opened": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "title",
+                      "pigScript",
+                      "pythonScript",
+                      "templetonArguments",
+                      "dateCreated",
+                      "owner",
+                      "opened"
+                    ]
+                  }
+                }
+              }
+            },
+            "required": [
+              "scripts"
+            ]
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/file/{file}": {
+      "get": {
+        "description": "Get content of file",
+        "summary": "Get content of file at {file}",
+        "operationId": "readFile",
+        "tags": [
+          "readFile"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "object",
+                  "properties": {
+                    "filePath": {
+                      "type": "string"
+                    },
+                    "fileContent": {
+                      "type": "string"
+                    },
+                    "hasNext": {
+                      "type": "boolean"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "pageCount": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "filePath",
+                    "fileContent",
+                    "hasNext",
+                    "page",
+                    "pageCount"
+                  ]
+                }
+              },
+              "required": [
+                "file"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "file",
+          "description": "File to read. Name with full path",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/file/{file1}": {
+      "put": {
+        "description": "Update content of {file}",
+        "summary": "Update content of {file}",
+        "operationId": "updateFile",
+        "tags": [
+          "updateFile"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "file",
+          "description": "File to read. Name with full path",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "body",
+          "name": "body",
+          "description": "File content to write",
+          "type": "object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "file": {
+                "type": "object",
+                "properties": {
+                  "fileContent": {
+                    "type": "string"
+                  },
+                  "hasNext": {
+                    "type": "boolean"
+                  },
+                  "page": {
+                    "type": "integer"
+                  },
+                  "pageCount": {
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "fileContent",
+                  "hasNext",
+                  "page",
+                  "pageCount"
+                ]
+              }
+            },
+            "required": [
+              "file"
+            ]
+          },
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/scripts/{scriptId}": {
+      "put": {
+        "description": "Update content of script with {scriptId}",
+        "summary": "Update content of {scriptId}",
+        "operationId": "updateScript",
+        "tags": [
+          "updateScript"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "object",
+                  "properties": {
+                    "filePath": {
+                      "type": "string"
+                    },
+                    "fileContent": {
+                      "type": "string"
+                    },
+                    "hasNext": {
+                      "type": "boolean"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "pageCount": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "filePath",
+                    "fileContent",
+                    "hasNext",
+                    "page",
+                    "pageCount"
+                  ]
+                }
+              },
+              "required": [
+                "file"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "file",
+          "description": "File to read. Name with full path",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/scripts1": {
+      "post": {
+        "description": "Create a new script",
+        "summary": "Update content of {scriptId}",
+        "operationId": "createScript",
+        "tags": [
+          "createScript"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "script": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "pigScript": {
+                      "type": "string"
+                    },
+                    "pythonScript": {
+                      "type": "string"
+                    },
+                    "templetonArguments": {
+                      "type": "string"
+                    },
+                    "dateCreated": {
+                      "type": "integer"
+                    },
+                    "owner": {
+                      "type": "string"
+                    },
+                    "opened": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "id",
+                    "title",
+                    "pigScript",
+                    "pythonScript",
+                    "templetonArguments",
+                    "dateCreated",
+                    "owner",
+                    "opened"
+                  ]
+                }
+              },
+              "required": [
+                "script"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "body",
+          "name": "body",
+          "description": "Script",
+          "type": "object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "script": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "pigScript": {
+                    "type": "string"
+                  },
+                  "pythonScript": {
+                    "type": "string"
+                  },
+                  "templetonArguments": {
+                    "type": "string"
+                  },
+                  "dateCreated": {
+                    "type": "integer"
+                  },
+                  "owner": {
+                    "type": "string"
+                  },
+                  "opened": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "id",
+                  "title",
+                  "pigScript",
+                  "pythonScript",
+                  "templetonArguments",
+                  "dateCreated",
+                  "owner",
+                  "opened"
+                ]
+              }
+            },
+            "required": [
+              "script"
+            ]
+          },
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/jobs/{jobId}": {
+      "get": {
+        "description": "Get status of Job with id {jobId}",
+        "summary": "Get status of Pig Job",
+        "operationId": "jobStatus",
+        "tags": [
+          "jobStatus"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "job": {
+                  "type": "object",
+                  "properties": {
+                    "scriptId": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "templetonArguments": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "null"
+                    },
+                    "forcedContent": {
+                      "type": "null"
+                    },
+                    "duration": {
+                      "type": "null"
+                    },
+                    "sourceFile": {
+                      "type": "null"
+                    },
+                    "sourceFileContent": {
+                      "type": "null"
+                    },
+                    "statusDir": {
+                      "type": "null"
+                    },
+                    "status": {
+                      "type": "null"
+                    },
+                    "jobId": {
+                      "type": "null"
+                    },
+                    "jobType": {
+                      "type": "null"
+                    },
+                    "percentComplete": {
+                      "type": "null"
+                    },
+                    "pigScript": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "scriptId",
+                    "title",
+                    "templetonArguments",
+                    "owner",
+                    "forcedContent",
+                    "duration",
+                    "sourceFile",
+                    "sourceFileContent",
+                    "statusDir",
+                    "status",
+                    "jobId",
+                    "jobType",
+                    "percentComplete",
+                    "pigScript"
+                  ]
+                }
+              },
+              "required": [
+                "job"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "jobId",
+          "description": "Job Id",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/jobs1": {
+      "post": {
+        "description": "Create Job",
+        "summary": "Create Job",
+        "operationId": "createJob",
+        "tags": [
+          "createJob"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "job": {
+                  "type": "object",
+                  "properties": {
+                    "scriptId": {
+                      "type": "integer"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "templetonArguments": {
+                      "type": "string"
+                    },
+                    "owner": {
+                      "type": "null"
+                    },
+                    "forcedContent": {
+                      "type": "null"
+                    },
+                    "duration": {
+                      "type": "null"
+                    },
+                    "sourceFile": {
+                      "type": "null"
+                    },
+                    "sourceFileContent": {
+                      "type": "null"
+                    },
+                    "statusDir": {
+                      "type": "null"
+                    },
+                    "status": {
+                      "type": "null"
+                    },
+                    "jobId": {
+                      "type": "null"
+                    },
+                    "jobType": {
+                      "type": "null"
+                    },
+                    "percentComplete": {
+                      "type": "null"
+                    },
+                    "pigScript": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "scriptId",
+                    "title",
+                    "templetonArguments",
+                    "owner",
+                    "forcedContent",
+                    "duration",
+                    "sourceFile",
+                    "sourceFileContent",
+                    "statusDir",
+                    "status",
+                    "jobId",
+                    "jobType",
+                    "percentComplete",
+                    "pigScript"
+                  ]
+                }
+              },
+              "required": [
+                "job"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "body",
+          "name": "body",
+          "description": "Script",
+          "type": "object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "job": {
+                "type": "object",
+                "properties": {
+                  "scriptId": {
+                    "type": "integer"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "templetonArguments": {
+                    "type": "string"
+                  },
+                  "owner": {
+                    "type": "null"
+                  },
+                  "forcedContent": {
+                    "type": "null"
+                  },
+                  "duration": {
+                    "type": "null"
+                  },
+                  "sourceFile": {
+                    "type": "null"
+                  },
+                  "sourceFileContent": {
+                    "type": "null"
+                  },
+                  "statusDir": {
+                    "type": "null"
+                  },
+                  "status": {
+                    "type": "null"
+                  },
+                  "jobId": {
+                    "type": "null"
+                  },
+                  "jobType": {
+                    "type": "null"
+                  },
+                  "percentComplete": {
+                    "type": "null"
+                  },
+                  "pigScript": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "scriptId",
+                  "title",
+                  "templetonArguments",
+                  "owner",
+                  "forcedContent",
+                  "duration",
+                  "sourceFile",
+                  "sourceFileContent",
+                  "statusDir",
+                  "status",
+                  "jobId",
+                  "jobType",
+                  "percentComplete",
+                  "pigScript"
+                ]
+              }
+            },
+            "required": [
+              "job"
+            ]
+          },
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+
+    },
+    "/{version}/instances/{instanceName}/jobs/{jobId}/results/stderr": {
+      "get": {
+        "description": "Get Error Logs for Job with id {jobId}",
+        "summary": "Get Error Logs for Job",
+        "operationId": "getErrorLogs",
+        "tags": [
+          "getErrorLogs"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "object",
+                  "properties": {
+                    "filePath": {
+                      "type": "string"
+                    },
+                    "fileContent": {
+                      "type": "string"
+                    },
+                    "hasNext": {
+                      "type": "boolean"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "pageCount": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "filePath",
+                    "fileContent",
+                    "hasNext",
+                    "page",
+                    "pageCount"
+                  ]
+                }
+              },
+              "required": [
+                "file"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "jobId",
+          "description": "Id of the job",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/jobs/{jobId}/results/stdout": {
+      "get": {
+        "description": "Get Result Job with id {jobId}",
+        "summary": "Get Result for Job",
+        "operationId": "getResult",
+        "tags": [
+          "getResult"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "object",
+                  "properties": {
+                    "filePath": {
+                      "type": "string"
+                    },
+                    "fileContent": {
+                      "type": "string"
+                    },
+                    "hasNext": {
+                      "type": "boolean"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "pageCount": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "filePath",
+                    "fileContent",
+                    "hasNext",
+                    "page",
+                    "pageCount"
+                  ]
+                }
+              },
+              "required": [
+                "file"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "jobId",
+          "description": "Id of the job",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/jobs": {
+      "get": {
+        "description": "Get All Pig Jobs",
+        "summary": "Get all Jobs",
+        "operationId": "getAllJobs",
+        "tags": [
+          "jobs"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "object",
+                  "properties": {
+                    "jobs": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "string"
+                          },
+                          "scriptId": {
+                            "type": "string"
+                          },
+                          "pigScript": {
+                            "type": "string"
+                          },
+                          "title": {
+                            "type": "string"
+                          },
+                          "templetonArguments": {
+                            "type": "string"
+                          },
+                          "owner": {
+                            "type": "string"
+                          },
+                          "statusDir": {
+                            "type": "string"
+                          },
+                          "dateStarted": {
+                            "type": "integer"
+                          },
+                          "duration": {
+                            "type": "integer"
+                          },
+                          "jobId": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "inProgress": {
+                            "type": "boolean"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "scriptId",
+                          "pigScript",
+                          "title",
+                          "templetonArguments",
+                          "owner",
+                          "statusDir",
+                          "dateStarted",
+                          "duration",
+                          "jobId",
+                          "status",
+                          "inProgress"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "jobs"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    }
+  }
+}
