@@ -462,6 +462,84 @@
         }]
       }
     },
+    "/{version}/instances/{instanceName}/scripts/{scriptId1}": {
+      "delete": {
+        "description": "Delete Script with id {scriptId}",
+        "summary": "Delte Script with id {scriptId}",
+        "operationId": "deleteScript",
+        "tags": [
+          "deleteScript"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "scriptId",
+          "description": "Id of the script to delete",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
     "/{version}/instances/{instanceName}/scripts1": {
       "post": {
         "description": "Create a new script",
@@ -477,7 +555,6 @@
           "204": {
             "description": "OK",
             "schema": {
-              "$schema": "http://json-schema.org/draft-04/schema#",
               "type": "object",
               "properties": {
                 "script": {
@@ -994,7 +1071,6 @@
           "type": "string"
         }]
       }
-
     },
     "/{version}/instances/{instanceName}/jobs/{jobId}/results/stderr": {
       "get": {
@@ -1336,6 +1412,414 @@
           "in": "path",
           "name": "instanceName",
           "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/udfs": {
+      "get": {
+        "description": "List All UDF",
+        "summary": "List UDFs",
+        "operationId": "getAllUdfs",
+        "tags": [
+          "udfs"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "udfs": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "path": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "owner": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "path",
+                      "name",
+                      "owner"
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "udfs"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/udfs/{udfId}": {
+      "delete": {
+        "description": "Delete udf with id {udfId}",
+        "summary": "Delte udf with id {udfId}",
+        "operationId": "deleteUdf",
+        "tags": [
+          "deleteUdf"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "204": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "udfId",
+          "description": "Id of udf to delete",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/udfs": {
+      "post": {
+        "description": "Create a new udf",
+        "summary": "Create new udf",
+        "operationId": "createUdf",
+        "tags": [
+          "createUdf"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "script": {
+                  "type": "object",
+                  "properties": {
+                    "udf": {
+                      "type": "object",
+                      "properties": {
+                        "path": {
+                          "type": "string"
+                        },
+                        "name": {
+                          "type": "string"
+                        },
+                        "owner": {
+                          "type": "null"
+                        }
+                      },
+                      "required": [
+                        "path",
+                        "name",
+                        "owner"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "udf"
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "body",
+          "name": "body",
+          "description": "Script",
+          "type": "object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "udf": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "owner": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "path",
+                  "name",
+                  "owner"
+                ]
+              }
+            },
+            "required": [
+              "udf"
+            ]
+          },
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/file/{filePath}?action=ls": {
+      "get": {
+        "description": "List All files and directory",
+        "summary": "List All files and directory",
+        "operationId": "listFiles",
+        "tags": [
+          "listFiles"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ls": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "ls"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "filePath",
+          "description": "Path of file",
           "type": "string",
           "required": true
         }, {
