@@ -354,8 +354,8 @@
     },
     "/{version}/instances/{instanceName}/scripts/{scriptId}": {
       "put": {
-        "description": "Update content of script with {scriptId}",
-        "summary": "Update content of {scriptId}",
+        "description": "Update script with {scriptId}",
+        "summary": "Update script with id {scriptId}",
         "operationId": "updateScript",
         "tags": [
           "updateScript"
@@ -543,7 +543,7 @@
     "/{version}/instances/{instanceName}/scripts1": {
       "post": {
         "description": "Create a new script",
-        "summary": "Update content of {scriptId}",
+        "summary": "Create new Script",
         "operationId": "createScript",
         "tags": [
           "createScript"
