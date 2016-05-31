@@ -64,39 +64,34 @@
           }
         },
         "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "version",
-            "description": "view version",
-            "type": "string",
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "instanceName",
-            "description": "Name of the instance",
-            "type": "string",
-            "required": true
-          },
-          {
-            "in": "header",
-            "name": "X-Requested-By",
-            "description": "Required Header",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "ambari"
-            ]
-          },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic Auth header",
-            "required": true,
-            "type": "string"
-          }
-        ]
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
       }
     },
     "/{version}/instances/{instanceName}/resources/ddl/database/{dbName}/table": {
@@ -130,7 +125,8 @@
                 "tables",
                 "database"
               ]
-            }          },
+            }
+          },
           "500": {
             "description": "Error",
             "schema": {
@@ -155,50 +151,801 @@
           }
         },
         "security": [],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "version",
-            "description": "view version",
-            "type": "string",
-            "required": true
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "dbName",
+          "description": "Name of the database",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/jobs": {
+      "post": {
+        "description": "Create new hive job",
+        "summary": "Create new hive job",
+        "operationId": "createJob",
+        "tags": [
+          "createJob"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "job": {
+                  "type": "object",
+                  "properties": {
+                    "owner": {
+                      "type": "string"
+                    },
+                    "dataBase": {
+                      "type": "string"
+                    },
+                    "statusDir": {
+                      "type": "string"
+                    },
+                    "queryFile": {
+                      "type": "string"
+                    },
+                    "globalSettings": {
+                      "type": "string"
+                    },
+                    "sessionTag": {
+                      "type": "string"
+                    },
+                    "dagId": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "statusMessage": {
+                      "type": "null"
+                    },
+                    "queryId": {
+                      "type": "null"
+                    },
+                    "dagName": {
+                      "type": "null"
+                    },
+                    "duration": {
+                      "type": "integer"
+                    },
+                    "referrer": {
+                      "type": "string"
+                    },
+                    "logFile": {
+                      "type": "string"
+                    },
+                    "sqlState": {
+                      "type": "null"
+                    },
+                    "confFile": {
+                      "type": "null"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "applicationId": {
+                      "type": "string"
+                    },
+                    "dateSubmitted": {
+                      "type": "integer"
+                    },
+                    "forcedContent": {
+                      "type": "null"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "owner",
+                    "dataBase",
+                    "statusDir",
+                    "queryFile",
+                    "globalSettings",
+                    "sessionTag",
+                    "dagId",
+                    "title",
+                    "statusMessage",
+                    "queryId",
+                    "dagName",
+                    "duration",
+                    "referrer",
+                    "logFile",
+                    "sqlState",
+                    "confFile",
+                    "id",
+                    "applicationId",
+                    "dateSubmitted",
+                    "forcedContent",
+                    "status"
+                  ]
+                }
+              },
+              "required": [
+                "job"
+              ]
+            }
           },
-          {
-            "in": "path",
-            "name": "instanceName",
-            "description": "Name of the instance",
-            "type": "string",
-            "required": true
-          },
-          {
-            "in": "path",
-            "name": "dbName",
-            "description": "Name of the database",
-            "type": "string",
-            "required": true
-          },
-          {
-            "in": "header",
-            "name": "X-Requested-By",
-            "description": "Required Header",
-            "required": true,
-            "type": "string",
-            "enum": [
-              "ambari"
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "body",
+          "name": "body",
+          "description": "Script",
+          "type": "object",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "job": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "queryFile": {
+                    "type": "null"
+                  },
+                  "owner": {
+                    "type": "null"
+                  },
+                  "dataBase": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "null"
+                  },
+                  "statusMessage": {
+                    "type": "null"
+                  },
+                  "dateSubmitted": {
+                    "type": "null"
+                  },
+                  "forcedContent": {
+                    "type": "string"
+                  },
+                  "logFile": {
+                    "type": "null"
+                  },
+                  "dagName": {
+                    "type": "null"
+                  },
+                  "dagId": {
+                    "type": "null"
+                  },
+                  "sessionTag": {
+                    "type": "null"
+                  },
+                  "statusDir": {
+                    "type": "null"
+                  },
+                  "referrer": {
+                    "type": "string"
+                  },
+                  "confFile": {
+                    "type": "null"
+                  },
+                  "globalSettings": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "title",
+                  "queryFile",
+                  "owner",
+                  "dataBase",
+                  "status",
+                  "statusMessage",
+                  "dateSubmitted",
+                  "forcedContent",
+                  "logFile",
+                  "dagName",
+                  "dagId",
+                  "sessionTag",
+                  "statusDir",
+                  "referrer",
+                  "confFile",
+                  "globalSettings"
+                ]
+              }
+            },
+            "required": [
+              "job"
             ]
           },
-          {
-            "in": "header",
-            "name": "Authorization",
-            "description": "Basic Auth header",
-            "required": true,
-            "type": "string"
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/resources/file/{file}": {
+      "get": {
+        "description": "Get content of file",
+        "summary": "Get content of file at {file}",
+        "operationId": "readFile",
+        "tags": [
+          "readFile"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "file": {
+                  "type": "object",
+                  "properties": {
+                    "filePath": {
+                      "type": "string"
+                    },
+                    "fileContent": {
+                      "type": "string"
+                    },
+                    "hasNext": {
+                      "type": "boolean"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "pageCount": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "filePath",
+                    "fileContent",
+                    "hasNext",
+                    "page",
+                    "pageCount"
+                  ]
+                }
+              },
+              "required": [
+                "file"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "trace": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "message",
+                "trace",
+                "status"
+              ]
+            }
           }
-        ]
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "file",
+          "description": "File to read. Name with full path",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/jobs/sessions/{sessionTag}": {
+      "get": {
+        "description": "Get session status",
+        "summary": "Get status of session with tag : {sessionTag}",
+        "operationId": "sessionStatus",
+        "tags": [
+          "tables"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "tables": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "database": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "tables",
+                "database"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "session": {
+                  "type": "object",
+                  "properties": {
+                    "actual": {
+                      "type": "boolean"
+                    },
+                    "sessionTag": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "actual",
+                    "sessionTag"
+                  ]
+                }
+              },
+              "required": [
+                "session"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "sessionTag",
+          "description": "Name of the database",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/jobs/{jobId}": {
+      "get": {
+        "description": "Get status of Job",
+        "summary": "Get status of Job with id : {jobId}",
+        "operationId": "sessionStatus",
+        "tags": [
+          "sessionStatus"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "job": {
+                  "type": "object",
+                  "properties": {
+                    "owner": {
+                      "type": "string"
+                    },
+                    "dataBase": {
+                      "type": "string"
+                    },
+                    "statusDir": {
+                      "type": "string"
+                    },
+                    "queryFile": {
+                      "type": "string"
+                    },
+                    "globalSettings": {
+                      "type": "string"
+                    },
+                    "sessionTag": {
+                      "type": "string"
+                    },
+                    "dagId": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "statusMessage": {
+                      "type": "null"
+                    },
+                    "queryId": {
+                      "type": "null"
+                    },
+                    "dagName": {
+                      "type": "null"
+                    },
+                    "duration": {
+                      "type": "integer"
+                    },
+                    "referrer": {
+                      "type": "string"
+                    },
+                    "logFile": {
+                      "type": "string"
+                    },
+                    "sqlState": {
+                      "type": "null"
+                    },
+                    "confFile": {
+                      "type": "null"
+                    },
+                    "id": {
+                      "type": "string"
+                    },
+                    "applicationId": {
+                      "type": "string"
+                    },
+                    "dateSubmitted": {
+                      "type": "integer"
+                    },
+                    "forcedContent": {
+                      "type": "null"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "owner",
+                    "dataBase",
+                    "statusDir",
+                    "queryFile",
+                    "globalSettings",
+                    "sessionTag",
+                    "dagId",
+                    "title",
+                    "statusMessage",
+                    "queryId",
+                    "dagName",
+                    "duration",
+                    "referrer",
+                    "logFile",
+                    "sqlState",
+                    "confFile",
+                    "id",
+                    "applicationId",
+                    "dateSubmitted",
+                    "forcedContent",
+                    "status"
+                  ]
+                }
+              },
+              "required": [
+                "job"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "session": {
+                  "type": "object",
+                  "properties": {
+                    "actual": {
+                      "type": "boolean"
+                    },
+                    "sessionTag": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "actual",
+                    "sessionTag"
+                  ]
+                }
+              },
+              "required": [
+                "session"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "jobId",
+          "description": "Name of the database",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
+      }
+    },
+    "/{version}/instances/{instanceName}/jobs/{jobId}/results?first=true": {
+      "get": {
+        "description": "Get result for a Job",
+        "summary": "Get result of job with id : {jobId}",
+        "operationId": "getResult",
+        "tags": [
+          "getResult"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                  }
+                },
+                "rows": {
+                  "type": "array",
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "readCount": {
+                  "type": "integer"
+                },
+                "hasNext": {
+                  "type": "boolean"
+                },
+                "offset": {
+                  "type": "integer"
+                },
+                "hasResults": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "schema",
+                "rows",
+                "readCount",
+                "hasNext",
+                "offset",
+                "hasResults"
+              ]
+            }
+          },
+          "500": {
+            "description": "Error",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "session": {
+                  "type": "object",
+                  "properties": {
+                    "actual": {
+                      "type": "boolean"
+                    },
+                    "sessionTag": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "actual",
+                    "sessionTag"
+                  ]
+                }
+              },
+              "required": [
+                "session"
+              ]
+            }
+          }
+        },
+        "security": [],
+        "parameters": [{
+          "in": "path",
+          "name": "version",
+          "description": "view version",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "instanceName",
+          "description": "Name of the instance",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "path",
+          "name": "jobId",
+          "description": "Name of the database",
+          "type": "string",
+          "required": true
+        }, {
+          "in": "header",
+          "name": "X-Requested-By",
+          "description": "Required Header",
+          "required": true,
+          "type": "string",
+          "enum": [
+            "ambari"
+          ]
+        }, {
+          "in": "header",
+          "name": "Authorization",
+          "description": "Basic Auth header",
+          "required": true,
+          "type": "string"
+        }]
       }
     }
-
-
-
   }
 }
