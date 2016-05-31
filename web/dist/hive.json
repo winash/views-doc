@@ -556,7 +556,7 @@
         "summary": "Get status of session with tag : {sessionTag}",
         "operationId": "sessionStatus",
         "tags": [
-          "tables"
+          "sessionStatus"
         ],
         "produces": [
           "application/json"
@@ -653,7 +653,7 @@
         "summary": "Get status of Job with id : {jobId}",
         "operationId": "sessionStatus",
         "tags": [
-          "sessionStatus"
+          "jobStatus"
         ],
         "produces": [
           "application/json"
